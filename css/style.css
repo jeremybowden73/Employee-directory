@@ -1,0 +1,26 @@
+html {
+  background-color: #edffea;
+  background-color: darkgrey;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.25vw;
+}
+
+.page {
+  margin: 5% 5% 2% 5%;
+  overflow-y: auto;
+}
+
+.gridContainer {
+  display: grid;
+  background-color: transparent;
+  max-width: 100%;
+  max-height: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-auto-rows: 150px;
+  grid-gap: 15px;
+}
+
+.gridItem {
+  border-radius: 0.2rem;
+  background-color: white;
+}
