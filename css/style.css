@@ -2,7 +2,7 @@ html {
   background-color: #edffea;
   background-color: darkgrey;
   font-family: 'Ubuntu', sans-serif;
-  font-size: 1.25vw;
+  font-size: 20px;
 }
 
 .page {
@@ -35,6 +35,13 @@ html {
   background-color: red;
   grid-row: 2 / 5;
   grid-column: 2 / 5;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .name {
