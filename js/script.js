@@ -1,14 +1,4 @@
 
-$.ajax({
-  url: 'https://randomuser.me/api/?results=10',
-  dataType: 'json',
-  success: function (data) {
-    console.log(data);
-  }
-});
-
-
-
 function createCard() {
   const newCard = document.createElement("div");
   newCard.className = "gridCard";
@@ -16,47 +6,48 @@ function createCard() {
   const photoDiv = document.createElement("div");
   photoDiv.className = "photo";
   const photoImg = document.createElement("img");
-  photoImg.id = "cardPhoto";
+  photoImg.className = "cardPhoto";
   const nameDiv = document.createElement("div");
   nameDiv.className = "name";
   const emailDiv = document.createElement("div");
-  emailDiv.classList.add("email");
+  emailDiv.className = "email";
   const locationDiv = document.createElement("div");
-  locationDiv.classList.add("location");
-  // drop the four elements into the 'newCard' element
+  locationDiv.className = "location";
+  // insert the four elements into the 'newCard' element
   newCard.appendChild(photoDiv);
   photoDiv.appendChild(photoImg);
   newCard.appendChild(nameDiv);
   newCard.appendChild(emailDiv);
   newCard.appendChild(locationDiv);
-  // ajax request
-  $.ajax({
-    url: 'https://randomuser.me/api/',
-    dataType: 'json',
-    success: function (data) {
-      //console.log(data);
-      // populate the card elements from the ajax response
-      let firstName = data.results[0].name.first;
-      let lastName = data.results[0].name.last;
-      nameDiv.innerHTML = firstName.charAt(0).toUpperCase()
-        + firstName.slice(1)
-        + " "
-        + lastName.charAt(0).toUpperCase()
-        + lastName.slice(1);
-      emailDiv.innerHTML = data.results[0].email;
-      let location = data.results[0].location.city;
-      locationDiv.innerHTML = location.charAt(0).toUpperCase() + location.slice(1);
-      photoImg.src = data.results[0].picture.large;
-    }
-  });
-  //
   return newCard;
 };
 
-
+// add 12 new "grid cards" to the main grid
 const divGridContainer = document.querySelector(".gridContainer");
-// add 12 "grid cards" to the main grid
 for (let i = 0; i < 12; i++) {
   divGridContainer.appendChild(createCard());
 }
+
+// jQuery AJAX request to get 12 random profiles
+const url = 'https://randomuser.me/api/?results=12';
+const callback = function (response) {
+  // this function loops over the 12 cards and populates the required fields
+  // using the 12 objects in the AJAX response
+  let nameDivs = document.getElementsByClassName("name");
+  let emailDivs = document.getElementsByClassName("email");
+  let locationDivs = document.getElementsByClassName("location");
+  let photoDivs = document.getElementsByClassName("cardPhoto");
+  for (let i = 0; i < 12; i++) {
+    nameDivs[i].innerHTML = response.results[i].name.first.charAt(0).toUpperCase()
+      + response.results[i].name.first.slice(1)
+      + " "
+      + response.results[i].name.last.charAt(0).toUpperCase()
+      + response.results[i].name.last.slice(1);
+    emailDivs[i].innerHTML = response.results[i].email;
+    locationDivs[i].innerHTML = response.results[i].location.city.charAt(0).toUpperCase()
+      + response.results[i].location.city.slice(1);
+    photoDivs[i].src = response.results[i].picture.large;
+  }
+};
+$.get(url, callback);
 
