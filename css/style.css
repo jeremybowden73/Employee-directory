@@ -25,19 +25,26 @@ html {
   grid-gap: 15px;
 }
 
-.gridCard {
+.grid {
   display: grid;
   border-radius: 2%;
   background-color: white;
-  grid-template-columns: repeat(10, 30px) repeat(1, 1fr);
-  grid-template-rows: repeat(5, 1fr);
   grid-gap: 5px;
   border: 1px solid #106d00;
 }
 
-.gridCard:hover {
+.card {
+  grid-template-columns: repeat(10, 30px) repeat(1, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.card:hover {
   background-color: #439135;
   transition: background-color 0.5s linear;
+}
+
+.card * {
+  align-self: center;
 }
 
 .photo {
@@ -72,27 +79,66 @@ img {
   font-size: 0.67rem;
 }
 
-.gridCard * {
-  align-self: center;
-}
+
 
 /* stylng for the modal view */
 .modalView {
   /* display: none; */
   z-index: 1;
   position: fixed;
-  left: 100px;
-  top: 200px;
-  width: 500px;
-  height: 500px;
-  background-color: orange;
+  left: 30%;
+  top: 15%;
+  width: 40%;
+  height: 50%;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(15, 1fr);  
 }
+
+.photoModal {
+  grid-row: 2 / 6;
+  grid-column: 4 / 8;
+}
+
+.nameModal {
+  grid-row: 7 / 8;
+  grid-column: 3 / 9;
+  font-weight: bold;
+}
+
+.emailModal {
+  grid-row: 8 / 9;
+  grid-column: 3 / 9;
+}
+
+.locationModal {
+  grid-row: 9 / 10;
+  grid-column: 3 / 9;
+}
+
+.phoneModal {
+  grid-row: 12 / 13;
+  grid-column: 3 / 9;
+}
+
+.addressModal {
+  grid-row: 13 / 14;
+  grid-column: 3 / 9;
+}
+
+.birthdayModal {
+  grid-row: 14 / 15;
+  grid-column: 3 / 9;
+}
+
+
+  
+
 
 
 
 /* media query for very narrow screens
 e.g. mobiles in portrait */
-@media screen and (orientation: portrait) and (max-width: 500px) {
+@media screen and (orientation: portrait) and (max-width: 750px) {
 
   .page {
     margin: 0%;
@@ -102,5 +148,12 @@ e.g. mobiles in portrait */
     font-size: 0.5rem;
   }
 
+  .modalView {
+  left: 15%;
+  width: 70%
 }
+
+}
+
+
 
