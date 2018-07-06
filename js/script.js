@@ -2,9 +2,10 @@
 // variable to store data for 12 random people
 let randomPeople = {};
 
-function createCard() {
+function createCard(i) {
   const newCard = document.createElement("div");
   newCard.className = "gridCard";
+  newCard.id = i;
   // create divs for the card information
   const photoDiv = document.createElement("div");
   photoDiv.className = "photo";
@@ -28,8 +29,10 @@ function createCard() {
 // add 12 new "grid cards" to the main grid
 const divGridContainer = document.querySelector(".gridContainer");
 for (let i = 0; i < 12; i++) {
-  divGridContainer.appendChild(createCard());
+  divGridContainer.appendChild(createCard(i));
 }
+// create the modal view window and initially hide it
+modalWindow();
 
 
 //
@@ -68,8 +71,10 @@ fetch('https://randomuser.me/api/?results=12')
 //
 
 // setTimeout(function () {
-//   console.log(randomPeople[0].email);
-// }, 2000);
+
+//   modalWindow();
+//   //console.log(randomPeople[0].email);
+// }, 500);
 
 function populateCards(dataSet) {
   // this function loops over the 12 cards and populates the required fields
@@ -102,22 +107,36 @@ function populateCards(dataSet) {
 
 
 
-function modalWindow(dataSet) {
-  //console.log(dataSet);
-  console.log(dataSet[0].location.city);
-
-  divGridContainer.onclick = function (event) {
-    // traverse up the DOM tree from the event.target, until we get to the DIV with class="gridCard", then add a class "selected"
-    let clickedDiv = event.target;
-    while (clickedDiv.className !== "gridCard") {
-      clickedDiv = clickedDiv.parentNode;
-    }
-    clickedDiv.id = "selected";
-
-    const selectedCard = document.getElementById("selected");
+function modalWindow() {
+  const modalView = document.createElement("div");
+  //modalView.innerHTML = "MODAL";
+  modalView.className = "modalView";
+  document.getElementsByClassName("page")[0].appendChild(modalView);
+}
 
 
 
-  };
+
+
+// event handler for when a card is clicked on
+divGridContainer.onclick = function (event) {
+  // remove the class "selected" from all cards
+  const allGridCards = document.querySelectorAll(".gridCard");
+  allGridCards.forEach(each => each.classList.remove("selected"));
+
+  // traverse up the DOM tree from the event.target, until we get to the DIV with class="gridCard", then add a class "selected"
+  let clickedDiv = event.target;
+  while (clickedDiv.className !== "gridCard") {
+    clickedDiv = clickedDiv.parentNode;
+  }
+  clickedDiv.classList.add("selected");
+
+  // variable to store the card number of the card that was clicked on
+  let cardNumber = clickedDiv.id;
+  console.log(`Clicked: ${cardNumber}`);
+  console.log(randomPeople[cardNumber]);
+
+
+
 };
 
