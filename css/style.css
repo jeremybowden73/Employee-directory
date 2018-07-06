@@ -90,44 +90,47 @@ img {
   top: 15%;
   width: 40%;
   height: 50%;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(15, 1fr);  
+  grid-template-columns: 1fr repeat(10, 8%) 1fr;
+  grid-template-rows: 1fr repeat(15, 5%) 1fr;
+  justify-items: center;
+  align-items: center;
 }
 
 .photoModal {
-  grid-row: 2 / 6;
-  grid-column: 4 / 8;
+  grid-row: 3 / 7;
+  grid-column: 5 / 9;
 }
 
 .nameModal {
-  grid-row: 7 / 8;
-  grid-column: 3 / 9;
+  grid-row: 8 / 9;
+  grid-column: 4 / 10;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .emailModal {
-  grid-row: 8 / 9;
-  grid-column: 3 / 9;
+  grid-row: 9 / 10;
+  grid-column: 4 / 10;
 }
 
 .locationModal {
-  grid-row: 9 / 10;
-  grid-column: 3 / 9;
+  grid-row: 10 / 11;
+  grid-column: 4 / 10;
 }
 
 .phoneModal {
   grid-row: 12 / 13;
-  grid-column: 3 / 9;
+  grid-column: 4 / 10;
 }
 
 .addressModal {
   grid-row: 13 / 14;
-  grid-column: 3 / 9;
+  grid-column: 4 / 10;
 }
 
 .birthdayModal {
   grid-row: 14 / 15;
-  grid-column: 3 / 9;
+  grid-column: 4 / 10;
 }
 
 
@@ -144,7 +147,7 @@ e.g. mobiles in portrait */
     margin: 0%;
   }
 
-  .email {
+  .email, emailModal {
     font-size: 0.5rem;
   }
 

@@ -36,20 +36,69 @@ function populateCards() {
   let locationDivs = document.getElementsByClassName("location");
   let photoDivs = document.getElementsByClassName("cardPhoto");
   for (let i = 0; i < 12; i++) {
-    nameDivs[i].innerHTML = randomPeople[i].name.first.charAt(0).toUpperCase()
-      + randomPeople[i].name.first.slice(1)
-      + " "
-      + randomPeople[i].name.last.charAt(0).toUpperCase()
-      + randomPeople[i].name.last.slice(1);
-    emailDivs[i].innerHTML = randomPeople[i].email;
+    let cardDetails = populateInfo(randomPeople[i]);
+    nameDivs[i].innerHTML = cardDetails.name;
+    emailDivs[i].innerHTML = cardDetails.email;
     if (emailDivs[i].innerHTML.length >= 28) {
       emailDivs[i].style.fontSize = "0.5rem";
     }
-    locationDivs[i].innerHTML = randomPeople[i].location.city.charAt(0).toUpperCase()
-      + randomPeople[i].location.city.slice(1);
-    photoDivs[i].src = randomPeople[i].picture.large;
+    locationDivs[i].innerHTML = cardDetails.location;
+    photoDivs[i].src = cardDetails.photo;
   }
 }
+
+// populate the modal view with the data for the 'clicked on' card id
+function populateModal(cardNumber) {
+  let modalDetails = populateInfo(randomPeople[cardNumber]);
+  let nameDiv = document.getElementsByClassName("nameModal")[0];
+  let emailDiv = document.getElementsByClassName("emailModal")[0];
+  let locationDiv = document.getElementsByClassName("locationModal")[0];
+  let photoDiv = document.getElementsByClassName("cardPhotoModal")[0];
+  let phoneDiv = document.getElementsByClassName("phoneModal")[0];
+  let addressDiv = document.getElementsByClassName("addressModal")[0];
+  let birthdayDiv = document.getElementsByClassName("birthdayModal")[0];
+  nameDiv.innerHTML = modalDetails.name;
+  emailDiv.innerHTML = modalDetails.email;
+  if (emailDiv.innerHTML.length >= 28) {
+    emailDiv.style.fontSize = "0.5rem";
+  }
+  locationDiv.innerHTML = modalDetails.location;
+  photoDiv.src = modalDetails.photo;
+  phoneDiv.innerHTML = modalDetails.phone;
+  addressDiv.innerHTML = modalDetails.address;
+  birthdayDiv.innerHTML = modalDetails.birthday;
+
+};
+
+// function to get the required info from a person object and store it in a new object
+function populateInfo(person) {
+  let oneCard = {}; // new object to store the required info for a person
+  oneCard.name = person.name.first.charAt(0).toUpperCase()
+    + person.name.first.slice(1)
+    + " "
+    + person.name.last.charAt(0).toUpperCase()
+    + person.name.last.slice(1);
+  oneCard.email = person.email;
+  oneCard.location = person.location.city.charAt(0).toUpperCase()
+    + person.location.city.slice(1);
+  oneCard.photo = person.picture.large;
+  oneCard.phone = person.phone;
+  oneCard.address = person.location.street
+    + ", "
+    + oneCard.location
+    + ", "
+    + person.location.state.charAt(0).toUpperCase()
+    + person.location.state.slice(1);
+  const dob = person.dob.date;
+  oneCard.birthday = "Birthday: "
+    + dob.slice(8, 10)
+    + "/"
+    + dob.slice(5, 7)
+    + "/"
+    + dob.slice(0, 4);
+  return oneCard;
+};
+
 
 // function to create a blank modal window, for when an employee card is clicked on
 function modalWindow() {
@@ -159,14 +208,6 @@ divGridContainer.onclick = function (event) {
 
 };
 
-// populate the modal view with the data for the 'clicked on' card id
-function populateModal(i) {
-  let nameDiv = document.getElementsByClassName("nameModal")[0];
-  nameDiv.innerHTML = randomPeople[i].name.first.charAt(0).toUpperCase()
-    + randomPeople[i].name.first.slice(1)
-    + " "
-    + randomPeople[i].name.last.charAt(0).toUpperCase()
-    + randomPeople[i].name.last.slice(1);
-};
 
-// here's something new
+
+
