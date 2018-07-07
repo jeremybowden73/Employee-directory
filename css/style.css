@@ -156,6 +156,11 @@ img {
 e.g. mobiles in portrait */
 @media screen and (max-width: 750px) {
 
+  .modalView {
+    left: 10%;
+    width: 80%
+  }
+
   .page {
     margin: 0%;
   }
@@ -190,7 +195,8 @@ e.g.  mobiles in landscape */
 @media screen and (max-height: 700px) {
 
   .modalView {
-    height: 75%;
+    top: 5%;
+    height: 90%;
   }
 }
 
