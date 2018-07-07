@@ -186,12 +186,14 @@ e.g. tablets in portrait */
 }
 
 /* media query for shallow screens
-e.g. mobiles in landscape */
+e.g.  mobiles in landscape */
 @media screen and (max-height: 700px) {
 
   .modalView {
     height: 75%;
   }
 }
+
+
 
 

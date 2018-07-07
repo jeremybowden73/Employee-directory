@@ -77,6 +77,7 @@ function populateModal(cardNumber) {
   birthdayDiv.innerHTML = modalDetails.birthday;
 };
 
+
 // function to get the required info from a person object and store it in a new object
 function populateInfo(person) {
   let oneCard = {}; // new object to store the required info for a person
