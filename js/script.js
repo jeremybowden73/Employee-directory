@@ -71,6 +71,9 @@ function populateModal(cardNumber) {
   photoDiv.src = modalDetails.photo;
   phoneDiv.innerHTML = modalDetails.phone;
   addressDiv.innerHTML = modalDetails.address;
+  if (addressDiv.innerHTML.length >= 28) {
+    addressDiv.style.fontSize = "0.75rem";
+  }
   birthdayDiv.innerHTML = modalDetails.birthday;
 };
 

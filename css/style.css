@@ -86,19 +86,20 @@ img {
 }
 
 
-/* stylng for the modal view */
+/* styling for the modal view */
 .modalView {
   display: none;
   z-index: 1;
   position: fixed;
-  left: 30%;
+  left: 35%;
   top: 15%;
-  width: 40%;
+  width: 30%;
   height: 50%;
   grid-template-columns: 1fr repeat(10, 8%) 1fr;
-  grid-template-rows: 1fr repeat(15, 5%) 1fr;
+  grid-template-rows: repeat(16, 5%) 1fr;
   justify-items: center;
   align-items: center;
+  -webkit-align-items: center;
 }
 
 .photoModal {
@@ -108,51 +109,52 @@ img {
 
 .nameModal {
   grid-row: 8 / 9;
-  grid-column: 4 / 10;
+  grid-column: 2 / 12;
   font-weight: bold;
   font-size: 1.5rem;
 }
 
 .emailModal {
   grid-row: 9 / 10;
-  grid-column: 4 / 10;
+  grid-column: 2 / 12;
 }
 
 .locationModal {
   grid-row: 10 / 11;
-  grid-column: 4 / 10;
+  grid-column: 2 / 12;
 }
 
 .phoneModal {
   grid-row: 12 / 13;
-  grid-column: 4 / 10;
+  grid-column: 2 / 12;
 }
 
 .addressModal {
   grid-row: 13 / 14;
-  grid-column: 4 / 10;
+  grid-column: 2 / 12;
 }
 
 .birthdayModal {
   grid-row: 14 / 15;
-  grid-column: 4 / 10;
+  grid-column: 2 / 12;
 }
 
 .closeButton {
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  grid-column: 11 / 12;
+  font-size: 2rem;
   transition: transform 1s;
 }
 
 .closeButton:hover {
-  transform: scale(3);
+  transform: scale(2);
   cursor: pointer;
 }
 
 
 /* media query for very narrow screens
 e.g. mobiles in portrait */
-@media screen and (orientation: portrait) and (max-width: 750px) {
+@media screen and (max-width: 750px) {
 
   .page {
     margin: 0%;
@@ -161,13 +163,35 @@ e.g. mobiles in portrait */
   .email, emailModal {
     font-size: 0.5rem;
   }
+}
+
+
+/* media query for narrow screens
+e.g. tablets in portrait */
+@media screen and (min-width: 751px) and (max-width: 1250px) {
 
   .modalView {
-  left: 15%;
-  width: 70%
-}
+    left: 15%;
+    width: 70%
+  }
+
+  .closeButton {
+    justify-self: end;
+  }
+
+  .nameModal {
+    font-size: 1.5rem;
+  }
 
 }
 
+/* media query for shallow screens
+e.g. mobiles in landscape */
+@media screen and (max-height: 700px) {
+
+  .modalView {
+    height: 75%;
+  }
+}
 
 
