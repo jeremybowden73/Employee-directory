@@ -19,7 +19,8 @@ html {
 
 .gridContainer {
   display: grid;
-  background-color: transparent;
+  opacity: 1;
+  transition: opacity 0.5s linear;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   grid-auto-rows: 170px;
   grid-gap: 15px;
@@ -36,11 +37,11 @@ html {
 .card {
   grid-template-columns: repeat(10, 30px) repeat(1, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  transition: background-color 0.5s linear;
 }
 
 .card:hover {
   background-color: #439135;
-  transition: background-color 0.5s linear;
 }
 
 .card * {
@@ -79,81 +80,118 @@ img {
   font-size: 0.67rem;
 }
 
+.disabledDIV {
+  pointer-events: none;
+  opacity: 0.25;
+}
 
 
-/* stylng for the modal view */
+/* styling for the modal view */
 .modalView {
-  /* display: none; */
+  display: none;
   z-index: 1;
   position: fixed;
-  left: 30%;
+  left: 35%;
   top: 15%;
-  width: 40%;
+  width: 30%;
   height: 50%;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(15, 1fr);  
+  grid-template-columns: 1fr repeat(10, 8%) 1fr;
+  grid-template-rows: repeat(16, 5%) 1fr;
+  justify-items: center;
+  align-items: center;
+  -webkit-align-items: center;
 }
 
 .photoModal {
-  grid-row: 2 / 6;
-  grid-column: 4 / 8;
+  grid-row: 3 / 7;
+  grid-column: 5 / 9;
 }
 
 .nameModal {
-  grid-row: 7 / 8;
-  grid-column: 3 / 9;
+  grid-row: 8 / 9;
+  grid-column: 2 / 12;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .emailModal {
-  grid-row: 8 / 9;
-  grid-column: 3 / 9;
+  grid-row: 9 / 10;
+  grid-column: 2 / 12;
 }
 
 .locationModal {
-  grid-row: 9 / 10;
-  grid-column: 3 / 9;
+  grid-row: 10 / 11;
+  grid-column: 2 / 12;
 }
 
 .phoneModal {
   grid-row: 12 / 13;
-  grid-column: 3 / 9;
+  grid-column: 2 / 12;
 }
 
 .addressModal {
   grid-row: 13 / 14;
-  grid-column: 3 / 9;
+  grid-column: 2 / 12;
 }
 
 .birthdayModal {
   grid-row: 14 / 15;
-  grid-column: 3 / 9;
+  grid-column: 2 / 12;
 }
 
+.closeButton {
+  grid-row: 2 / 3;
+  grid-column: 11 / 12;
+  font-size: 2rem;
+  transition: transform 1s;
+}
 
-  
-
-
+.closeButton:hover {
+  transform: scale(2);
+  cursor: pointer;
+}
 
 
 /* media query for very narrow screens
 e.g. mobiles in portrait */
-@media screen and (orientation: portrait) and (max-width: 750px) {
+@media screen and (max-width: 750px) {
 
   .page {
     margin: 0%;
   }
 
-  .email {
+  .email, emailModal {
     font-size: 0.5rem;
   }
+}
+
+
+/* media query for narrow screens
+e.g. tablets in portrait */
+@media screen and (min-width: 751px) and (max-width: 1250px) {
 
   .modalView {
-  left: 15%;
-  width: 70%
-}
+    left: 15%;
+    width: 70%
+  }
+
+  .closeButton {
+    justify-self: end;
+  }
+
+  .nameModal {
+    font-size: 1.5rem;
+  }
 
 }
 
+/* media query for shallow screens
+e.g. mobiles in landscape */
+@media screen and (max-height: 700px) {
+
+  .modalView {
+    height: 75%;
+  }
+}
 
 
