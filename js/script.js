@@ -184,9 +184,10 @@ function jsonSuccess(response) {
 
 function jsonError() {
   console.log("fetch request failed");
+  console.log(response.error);
 }
 
-fetch('https://randomuser.me/api/?results=12')
+fetch('https://randomuser.me/api/?nat=au,gb,ie,nz,us&results=12')
   .then(checkFetchStatus)
   .then(jsonify)
   .then(jsonSuccess)
